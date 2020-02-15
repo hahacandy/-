@@ -92,6 +92,8 @@ Gui,3:-caption
 Gui,3:Add,Picture,x0 y0 w%corverWidth% h%corverHeight%, %A_ScriptDir%\cover.png
 
 
+SetTimer, autoHideCover, 100
+
 left::
 	IfWinNotActive, NoxPlayer
 	{
@@ -140,6 +142,13 @@ down::
 		send {enter}
 	}
 */
+	return
+	
+autoHideCover:
+	IfWinActive, NoxPlayer
+	{
+		hideCover()
+	}
 	return
 	
 	
