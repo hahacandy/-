@@ -205,7 +205,7 @@ createCover(){
 			
 			coverCnt+=1
 		}else{
-			ImageSearch, vx, vy, 0, %searchY%, nx+clientSizeW, ny+clientSizeH, *100 %searchImageName2%.png
+			ImageSearch, vx, vy, nx, %searchY%, nx+clientSizeW, ny+clientSizeH, *100 %searchImageName2%.png
 			if(ErrorLevel == 0){
 				searchY := vy+100
 				vvx := vx - corverX
