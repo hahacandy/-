@@ -34,6 +34,8 @@ Global nny :=0
 Global coverCnt := 0
 Global coverCurrent := 0
 
+Global usingThread := false
+
 
 
 ;해상도별 녹스 크기 조정 후 클릭 위치 변경
@@ -106,37 +108,57 @@ Gui,3:Add,Picture,x0 y0 w%corverWidth% h%corverHeight%, %A_ScriptDir%\cover.png
 SetTimer, autoHideCover, 100
 
 left::
-	IfWinNotActive, NoxPlayer
+	if(!usingThread)
 	{
-		WinActivate, NoxPlayer
+		usingThread := true
+		IfWinNotActive, NoxPlayer
+		{
+			WinActivate, NoxPlayer
+		}
+		click, %leftClickX%,%leftClickY%
+		;sleep %clickDealy%
+		isChange()
+		createCover()
+		capture()
+		usingThread := false
 	}
-	click, %leftClickX%,%leftClickY%
-	;sleep %clickDealy%
-	isChange()
-	createCover()
-	capture()
 	return
 	
 
 right::
-	IfWinNotActive, NoxPlayer
+	if(!usingThread)
 	{
-		WinActivate, NoxPlayer
+		usingThread := true
+		IfWinNotActive, NoxPlayer
+		{
+			WinActivate, NoxPlayer
 
+		}
+		click, %rightClickX%, %rightClickY%
+		;sleep %clickDealy%
+		isChange()
+		createCover()
+		capture()
+		usingThread := false
 	}
-	click, %rightClickX%, %rightClickY%
-	;sleep %clickDealy%
-	isChange()
-	createCover()
-	capture()
 	return
 	
 up::
-	createOneCover()
+	if(!usingThread)
+	{
+		usingThread := true
+		createOneCover()
+		usingThread := false
+	}
 	return
 	
 down::
-	hideOneCover()
+	if(!usingThread)
+	{
+		usingThread := true
+		hideOneCover()
+		usingThread := false
+	}
 	return
 	
 	
