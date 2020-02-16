@@ -200,6 +200,14 @@ isChange(){
 			tooltip
 			break
 		}
+		
+		if(cnt >= 100)
+		{
+			tooltip, 커버 씌우기 실패 재시도 바람
+			sleep 1000
+			tooltip
+			break
+		}
 	}
 }
 	
