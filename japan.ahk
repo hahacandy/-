@@ -9,6 +9,9 @@ CoordMode, Pixel, Screen
 
 Global clientName := "NoxPlayer1"
 
+Global clientSizeW := 0
+Global clientSizeH := 0
+
 Global leftClickX := 0
 Global leftClickY := 0
 Global rightClickX := 0
@@ -36,7 +39,10 @@ Global coverCurrent := 0
 ;해상도별 녹스 크기 조정 후 클릭 위치 변경
 if(A_ScreenWidth == 1920 && A_ScreenHeight == 1200)
 {
-	Winmove, %clientName%, , , , 626, 1140
+	clientSizeW := 626
+	clientSizeH := 1140
+
+	Winmove, %clientName%, , , , %clientSizeW%, %clientSizeH%
 	
 	leftClickX := 182
 	leftClickY := 1024
@@ -58,7 +64,9 @@ if(A_ScreenWidth == 1920 && A_ScreenHeight == 1200)
 }
 else if(A_ScreenWidth == 1920 && A_ScreenHeight == 1080)
 {
-	Winmove, %clientName%, , , , 558, 1020
+	clientSizeW := 558
+	clientSizeH := 1020
+	Winmove, %clientName%, , , , %clientSizeW%, %clientSizeH%
 	
 	leftClickX := 179
 	leftClickY := 911
@@ -151,6 +159,7 @@ autoHideCover:
 	IfWinActive, NoxPlayer
 	{
 		hideCover()
+		coverCurrent := coverCnt
 	}
 	return
 	
@@ -159,11 +168,13 @@ createCover(){
 
 	coverCnt := 0
 	coverCurrent := 0
+	
+	WinGetPos, nx, ny,,, NoxPlayer1
 
-	searchY := 0 ;위에서 부터 커버를 차례대로 씌우기 위함
+	searchY := ny ;위에서 부터 커버를 차례대로 씌우기 위함
 
 	Loop, 3{
-		ImageSearch, vx, vy, 0, %searchY%, A_ScreenWidth, A_ScreenHeight, *100 %searchImageName%.png
+		ImageSearch, vx, vy, nx, %searchY%, nx+clientSizeW, ny+clientSizeH, *100 %searchImageName%.png
 		if(ErrorLevel == 0){
 			searchY := vy+100
 			vvx := vx - corverX
@@ -173,7 +184,7 @@ createCover(){
 			
 			coverCnt+=1
 		}else{
-			ImageSearch, vx, vy, 0, %searchY%, A_ScreenWidth, A_ScreenHeight, *100 %searchImageName2%.png
+			ImageSearch, vx, vy, 0, %searchY%, nx+clientSizeW, ny+clientSizeH, *100 %searchImageName2%.png
 			if(ErrorLevel == 0){
 				searchY := vy+100
 				vvx := vx - corverX
