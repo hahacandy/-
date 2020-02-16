@@ -159,7 +159,6 @@ autoHideCover:
 	IfWinActive, NoxPlayer
 	{
 		hideCover()
-		coverCurrent := coverCnt
 	}
 	return
 	
