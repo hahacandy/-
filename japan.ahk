@@ -28,6 +28,9 @@ Global searchImageName2 := ""
 Global nnx :=0
 Global nny :=0
 
+Global coverCnt := 0
+Global coverCurrent := 0
+
 
 
 ;해상도별 녹스 크기 조정 후 클릭 위치 변경
@@ -121,11 +124,11 @@ right::
 	return
 	
 up::
-	createCover()
+	createOneCover()
 	return
 	
 down::
-	hideCover()
+	hideOneCover()
 	return
 	
 	
@@ -154,6 +157,9 @@ autoHideCover:
 	
 createCover(){
 
+	coverCnt := 0
+	coverCurrent := 0
+
 	searchY := 0 ;위에서 부터 커버를 차례대로 씌우기 위함
 
 	Loop, 3{
@@ -164,6 +170,8 @@ createCover(){
 			vvy := vy - corverY
 			
 			Gui,%A_Index%:Show, x%vvx% y%vvy% w%corverWidth% h%corverHeight%
+			
+			coverCnt+=1
 		}else{
 			ImageSearch, vx, vy, 0, %searchY%, A_ScreenWidth, A_ScreenHeight, *100 %searchImageName2%.png
 			if(ErrorLevel == 0){
@@ -172,6 +180,7 @@ createCover(){
 				vvy := vy - corverY
 				
 				Gui,%A_Index%:Show, x%vvx% y%vvy% w%corverWidth% h%corverHeight%
+				coverCnt+=1
 			}else{
 				Gui,%A_Index%:hide
 			}
@@ -180,9 +189,35 @@ createCover(){
 	return
 }
 
+createOneCover(){
+
+	Loop, 3{
+		if(A_Index == coverCurrent && coverCnt >= A_Index)
+		{
+			Gui,%A_Index%:show
+			coverCurrent-=1
+			break
+		}
+	}
+	
+	return
+}
+
 hideCover(){
 	Loop, 3{
 		Gui,%A_Index%:hide
+	}
+	return
+}
+
+hideOneCover(){
+	Loop, 3{
+		if(A_Index-1 == coverCurrent && coverCnt >= A_Index)
+		{
+			Gui,%A_Index%:hide
+			coverCurrent+=1
+			break
+		}
 	}
 	return
 }
