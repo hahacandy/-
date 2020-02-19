@@ -28,8 +28,8 @@ Global clickDealy := 150
 Global searchImageName := ""
 Global searchImageName2 := ""
 
-Global nnx :=0
-Global nny :=0
+Global nnx := 0
+Global nny := 0
 
 Global coverCnt := 0
 Global coverCurrent := 0
@@ -76,8 +76,8 @@ else if(A_ScreenWidth == 1920 && A_ScreenHeight == 1080)
 	rightClickX := 391
 	rightClickY := 912
 	
-	corverWidth := 540
-	corverHeight := 35
+	corverWidth := 420
+	corverHeight := 30
 	
 	corverX := 260
 	corverY := 49
@@ -106,6 +106,7 @@ Gui,3:Add,Picture,x0 y0 w%corverWidth% h%corverHeight%, %A_ScriptDir%\cover.png
 
 
 SetTimer, autoHideCover, 100
+SetTimer, isClient, 100
 
 left::
 	if(!usingThread)
@@ -178,9 +179,16 @@ down::
 	return
 	
 autoHideCover:
-	IfWinActive, NoxPlayer
+	IfWinActive, %clientName%
 	{
 		hideCover()
+	}
+	return
+	
+isClient:
+	IfWinNotExist, %clientName%
+	{
+		exitapp
 	}
 	return
 	
@@ -190,7 +198,7 @@ createCover(){
 	coverCnt := 0
 	coverCurrent := 0
 	
-	WinGetPos, nx, ny,,, NoxPlayer1
+	WinGetPos, nx, ny,,, %clientName%
 
 	searchY := ny ;위에서 부터 커버를 차례대로 씌우기 위함
 
