@@ -44,6 +44,7 @@ if(A_ScreenWidth == 1200 && A_ScreenHeight == 1920)
 	clientSizeW := 1200
 	clientSizeH := 1860
 
+	WinActivate, %clientName%
 	Winmove, %clientName%,,,, %clientSizeW%, %clientSizeH%
 	Winmove, %clientName%,, 0, 0
 
@@ -128,7 +129,7 @@ wheelup::
 	{
 		usingThread := true
 		createOneCover()
-		sleep 500
+		sleep 800
 		usingThread := false
 	}
 	return
@@ -138,7 +139,7 @@ wheeldown::
 	{
 		usingThread := true
 		hideOneCover()
-		sleep 500
+		sleep 800
 		usingThread := false
 	}
 	return
