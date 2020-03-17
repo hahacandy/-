@@ -66,21 +66,21 @@ if(A_ScreenWidth == 1920 && A_ScreenHeight == 1200)
 }
 else if(A_ScreenWidth == 1920 && A_ScreenHeight == 1080)
 {
-	clientSizeW := 558
-	clientSizeH := 1020
+	clientSizeW := 605
+	clientSizeH := 1100
 	Winmove, %clientName%, , , , %clientSizeW%, %clientSizeH%
 	
 	leftClickX := 179
-	leftClickY := 911
+	leftClickY := 980
 	
 	rightClickX := 391
-	rightClickY := 912
+	rightClickY := 980
 	
-	corverWidth := 420
+	corverWidth := 440
 	corverHeight := 30
 	
-	corverX := 260
-	corverY := 49
+	corverX := 270
+	corverY := 53
 	
 	searchImageName := "location11"
 	searchImageName2 := "location11"
