@@ -129,7 +129,7 @@ wheelup::
 	{
 		usingThread := true
 		createOneCover()
-		sleep 800
+		sleep 500
 		usingThread := false
 	}
 	return
@@ -139,7 +139,7 @@ wheeldown::
 	{
 		usingThread := true
 		hideOneCover()
-		sleep 800
+		sleep 500
 		usingThread := false
 	}
 	return
@@ -149,6 +149,7 @@ autoHideCover:
 	IfWinActive, %clientName%
 	{
 		hideCover()
+		coverCurrent := coverCnt
 	}
 	return
 	

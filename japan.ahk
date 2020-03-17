@@ -52,7 +52,7 @@ if(A_ScreenWidth == 1920 && A_ScreenHeight == 1200)
 	rightClickX := 434
 	rightClickY := 1024
 	
-	corverWidth := 560
+	corverWidth := 580
 	corverHeight := 40
 	
 	corverX := 280
@@ -161,8 +161,7 @@ down::
 		usingThread := false
 	}
 	return
-	
-	
+
 		
 /*		
 	IfWinNotActive, *제목 없음 - Windows 메모장
@@ -182,6 +181,7 @@ autoHideCover:
 	IfWinActive, %clientName%
 	{
 		hideCover()
+		coverCurrent := coverCnt
 	}
 	return
 	
