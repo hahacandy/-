@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 CoordMode, Pixel, Screen
 
-Global clientName := "NoxPlayer1"
+Global clientName := "녹스 플레이어"
 
 Global clientSizeW := 0
 Global clientSizeH := 0
@@ -76,11 +76,11 @@ else if(A_ScreenWidth == 1920 && A_ScreenHeight == 1080)
 	rightClickX := 391
 	rightClickY := 980
 	
-	corverWidth := 440
-	corverHeight := 30
+	corverWidth := 550
+	corverHeight := 40
 	
 	corverX := 270
-	corverY := 53
+	corverY := 55
 	
 	searchImageName := "location11"
 	searchImageName2 := "location11"
@@ -112,9 +112,9 @@ left::
 	if(!usingThread)
 	{
 		usingThread := true
-		IfWinNotActive, NoxPlayer
+		IfWinNotActive, %clientName%
 		{
-			WinActivate, NoxPlayer
+			WinActivate, %clientName%
 		}
 		click, %leftClickX%,%leftClickY%
 		;sleep %clickDealy%
@@ -130,9 +130,9 @@ right::
 	if(!usingThread)
 	{
 		usingThread := true
-		IfWinNotActive, NoxPlayer
+		IfWinNotActive, %clientName%
 		{
-			WinActivate, NoxPlayer
+			WinActivate, %clientName%
 
 		}
 		click, %rightClickX%, %rightClickY%
@@ -268,7 +268,7 @@ isChange(){
 	{
 		cnt += 1
 		tooltip, %cnt%
-		WinGetPos, nx, ny,,, NoxPlayer1
+		WinGetPos, nx, ny,,, %clientName%
 		ImageSearch, vx, vy, nx, ny, nx+300, ny+300, *50 current.png
 		if(ErrorLevel == 0){
 		}else{
@@ -288,7 +288,7 @@ isChange(){
 	
 capture(){
 	pToken := Gdip_StartUp()
-	WinGetPos, nx, ny,,, NoxPlayer1
+	WinGetPos, nx, ny,,, %clientName%
 	pBitmap := Gdip_BitmapFromScreen((nx+nnx) . "|" . (ny+nny) . "|150|60")
 	Gdip_SaveBitmapToFile(pBitmap ,"current.png")
 	return

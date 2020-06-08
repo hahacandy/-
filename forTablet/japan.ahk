@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 CoordMode, Pixel, Screen
 
-Global clientName := "NoxPlayer1"
+Global clientName := "녹스 플레이어"
 
 Global clientSizeW := 0
 Global clientSizeH := 0
@@ -56,7 +56,7 @@ if(A_ScreenWidth == 1200 && A_ScreenHeight == 1920)
 	rightClickY := 1685
 	
 	corverWidth := 630
-	corverHeight := 40
+	corverHeight := 45
 	
 	corverX := 460
 	corverY := 80
@@ -92,9 +92,9 @@ left::
 	if(!usingThread)
 	{
 		usingThread := true
-		IfWinNotActive, NoxPlayer
+		IfWinNotActive, %clientName%
 		{
-			WinActivate, NoxPlayer
+			WinActivate, %clientName%
 		}
 		click, %leftClickX%,%leftClickY%
 		;sleep %clickDealy%
@@ -110,9 +110,9 @@ RButton::
 	if(!usingThread)
 	{
 		usingThread := true
-		IfWinNotActive, NoxPlayer
+		IfWinNotActive, %clientName%
 		{
-			WinActivate, NoxPlayer
+			WinActivate, %clientName%
 
 		}
 		click, %rightClickX%, %rightClickY%
@@ -236,7 +236,7 @@ isChange(){
 	{
 		cnt += 1
 		tooltip, %cnt%
-		WinGetPos, nx, ny,,, NoxPlayer1
+		WinGetPos, nx, ny,,, %clientName%
 		ImageSearch, vx, vy, nx, ny, nx+300, ny+300, *50 current.png
 		if(ErrorLevel == 0){
 		}else{
